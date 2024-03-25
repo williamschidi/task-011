@@ -33,9 +33,7 @@ const TableBody = styled.td`
 `;
 
 function GradesTable() {
-  const { frontEndData, backEndData, productDesignData, devOps } = data;
-
-  console.log(frontEndData);
+  const { frontEndData } = data;
 
   return (
     <Container>
