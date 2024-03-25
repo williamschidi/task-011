@@ -4,7 +4,8 @@ import Header from './Header';
 import TopScores from './TopScores';
 import LearningPath from './LearningPath';
 import GlobalStyle from '../style/GlobalStyle';
-// import initialData from './data.js';
+import { useEffect, useRef, useState } from 'react';
+import internData from './data.js';
 // import { useState } from 'react';
 
 const Container = styled.div`
@@ -15,20 +16,58 @@ const Container = styled.div`
 `;
 
 function App() {
-  // const [total, setTotal] = useState(0);
+  const [learningPath, setLearningPath] = useState('front-end');
+  const [internName, setInternName] = useState('');
+  const [internInfo, setInternInfo] = useState([]);
+  const [topInterns, setTopInterns] = useState([]);
 
-  // function getTotalScores() {
-  //   const score = data.map((d) => d.task);
-  //   console.log(score);
-  // }
-  // getTotalScores();
+  useEffect(() => {
+    let filteredInternInfo = [];
+    if (learningPath === 'front-end')
+      filteredInternInfo = internData.filter(
+        (data) => data.info === 'FrontEnd'
+      );
+
+    if (learningPath === 'product-design')
+      filteredInternInfo = internData.filter(
+        (data) => data.info === 'ProductDesign'
+      );
+
+    if (learningPath === 'back-end')
+      filteredInternInfo = internData.filter((data) => data.info === 'BackEnd');
+
+    if (learningPath === 'devOps')
+      filteredInternInfo = internData.filter((data) => data.info === 'DevOps');
+
+    setInternInfo(filteredInternInfo);
+  }, [learningPath]);
+
+  useEffect(() => {
+    const internGrades = internInfo.map((data) => {
+      const name = data.name;
+      const grades = Object.values(data.grades).reduce(
+        (acc, arr) => acc + arr,
+        0
+      );
+
+      return { name, grades };
+    });
+    internGrades.sort((a, b) => b.grades - a.grades);
+    const bestIntern = internGrades.slice(0, 3);
+    setTopInterns(bestIntern);
+  }, [internInfo]);
   return (
     <>
       <GlobalStyle />
       <Container>
         <LearningPath />
-        <Header />
-        <TopScores />
+        <Header
+          learningPath={learningPath}
+          setLearningPath={setLearningPath}
+          internName={internName}
+          setInternName={setInternName}
+        />
+        <TopScores bestIntern={topInterns} />
         {/* <GradesTable /> */}
       </Container>
     </>

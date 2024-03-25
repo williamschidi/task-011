@@ -69,41 +69,7 @@ const H1 = styled.h1`
   letter-spacing: -0.1rem;
 `;
 
-function Header() {
-  const [learningPath, setLearningPath] = useState('front-end');
-  const [internName, setInternName] = useState('');
-  const [internInfo, setInternInfo] = useState([]);
-
-  useEffect(() => {
-    let filteredInternInfo = [];
-    if (learningPath === 'front-end')
-      filteredInternInfo = internData.filter(
-        (data) => data.info === 'FrontEnd'
-      );
-
-    if (learningPath === 'product-design')
-      filteredInternInfo = internData.filter(
-        (data) => data.info === 'ProductDesign'
-      );
-
-    if (learningPath === 'back-end')
-      filteredInternInfo = internData.filter((data) => data.info === 'BackEnd');
-
-    if (learningPath === 'devOps')
-      filteredInternInfo = internData.filter((data) => data.info === 'DevOps');
-
-    setInternInfo(filteredInternInfo);
-  }, [learningPath]);
-
-  useEffect(() => {
-    const total = internInfo
-      .map((data) => Object.values(data.grades))
-      .map((data) => data.reduce((acc, arr) => acc + arr, 0))
-      .sort((a, b) => b - a)
-      .slice(0, 3);
-    return total;
-  }, [internInfo]);
-
+function Header({ learningPath, setLearningPath, internName, setInternName }) {
   return (
     <Nav>
       <Heading>
