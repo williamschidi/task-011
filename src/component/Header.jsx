@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import internData from './data.js';
-
 const Nav = styled.div`
   grid-column: 2/-1;
   display: flex;
@@ -69,7 +67,10 @@ const H1 = styled.h1`
   letter-spacing: -0.1rem;
 `;
 
-function Header({ learningPath, setLearningPath, internName, setInternName }) {
+function Header() {
+  const [learningPath, setLearningPath] = useState('front-end');
+  const [internName, setInternName] = useState('');
+
   return (
     <Nav>
       <Heading>
