@@ -29,7 +29,7 @@ function App() {
         <LearningPath />
         <Header />
         <TopScores />
-        <GradesTable />
+        {/* <GradesTable /> */}
       </Container>
     </>
 

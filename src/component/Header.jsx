@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import internData from './data.js';
 
 const Nav = styled.div`
   grid-column: 2/-1;
@@ -69,8 +70,39 @@ const H1 = styled.h1`
 `;
 
 function Header() {
-  const [selectOption, setSelectOption] = useState('');
-  const [query, setQuery] = useState('');
+  const [learningPath, setLearningPath] = useState('front-end');
+  const [internName, setInternName] = useState('');
+  const [internInfo, setInternInfo] = useState([]);
+
+  useEffect(() => {
+    let filteredInternInfo = [];
+    if (learningPath === 'front-end')
+      filteredInternInfo = internData.filter(
+        (data) => data.info === 'FrontEnd'
+      );
+
+    if (learningPath === 'product-design')
+      filteredInternInfo = internData.filter(
+        (data) => data.info === 'ProductDesign'
+      );
+
+    if (learningPath === 'back-end')
+      filteredInternInfo = internData.filter((data) => data.info === 'BackEnd');
+
+    if (learningPath === 'devOps')
+      filteredInternInfo = internData.filter((data) => data.info === 'DevOps');
+
+    setInternInfo(filteredInternInfo);
+  }, [learningPath]);
+
+  useEffect(() => {
+    const total = internInfo
+      .map((data) => Object.values(data.grades))
+      .map((data) => data.reduce((acc, arr) => acc + arr, 0))
+      .sort((a, b) => b - a)
+      .slice(0, 3);
+    return total;
+  }, [internInfo]);
 
   return (
     <Nav>
@@ -80,21 +112,20 @@ function Header() {
       </Heading>
       <Span>
         <Select
-          value={selectOption}
-          onChange={(e) => setSelectOption(e.target.value)}
+          value={learningPath}
+          onChange={(e) => setLearningPath(e.target.value)}
         >
-          <option value="">Learning Path</option>
-          <option value="product-design">Product Design</option>
           <option value="front-end">FrontEnd</option>
-          <option value="Back-end">BackEnd</option>
-          <option value="DevOps">DevOps</option>
+          <option value="product-design">Product Design</option>
+          <option value="back-end">BackEnd</option>
+          <option value="devOps">DevOps</option>
         </Select>
         <Form>
           <Input
             type="text"
             placeholder="Intern name"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={internName}
+            onChange={(e) => setInternName(e.target.value)}
           />
           <Icon>
             <ion-icon name="search-outline"></ion-icon>
