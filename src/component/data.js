@@ -1,14 +1,14 @@
 class InternData {
-  constructor(name, picture, info, grades) {
+  constructor(name, image, info, grades) {
     this.name = name;
-    this.picture = picture;
+    this.image = image;
     this.info = info;
     this.grades = grades;
   }
 }
 
 const internsData = [
-  new InternData('Chidi', 'chidi.jpg', 'FrontEnd', {
+  new InternData('Chidi', 'chidi.png', 'FrontEnd', {
     task1: 10,
     task2: 10,
     task3: 10,
@@ -32,13 +32,13 @@ const internsData = [
     task3: 3,
     task4: 10,
   }),
-  new InternData('Treasure', 'treasure.jpg', 'FrontEnd', {
+  new InternData('Treasure', 'treasure.png', 'FrontEnd', {
     task1: 9,
     task2: 10,
     task3: 10,
     task4: 10,
   }),
-  new InternData('Mike', 'mike.jpg', 'FrontEnd', {
+  new InternData('Mike', 'mike.png', 'FrontEnd', {
     task1: 6,
     task2: 8,
     task3: 10,
@@ -92,13 +92,13 @@ const internsData = [
     task3: 6,
     task4: 10,
   }),
-  new InternData('Phils', 'phils.jpg', 'BackEnd', {
+  new InternData('Phils', 'phils.png', 'BackEnd', {
     task1: 10,
     task2: 10,
     task3: 10,
     task4: 10,
   }),
-  new InternData('Kenneth', 'kenneth.jpg', 'BackEnd', {
+  new InternData('Kenneth', 'kenneth.png', 'BackEnd', {
     task1: 10,
     task2: 8,
     task3: 10,
@@ -116,7 +116,7 @@ const internsData = [
     task3: 3,
     task4: 8,
   }),
-  new InternData('Emeka', 'emeka.jpg', 'BackEnd', {
+  new InternData('Emeka', 'emeka.png', 'BackEnd', {
     task1: 10,
     task2: 7,
     task3: 10,
@@ -152,7 +152,7 @@ const internsData = [
     task3: 6,
     task4: 10,
   }),
-  new InternData('Esther', 'esther.jpg', 'ProductDesign', {
+  new InternData('Esther', 'esther.png', 'ProductDesign', {
     task1: 10,
     task2: 10,
     task3: 10,
@@ -170,7 +170,7 @@ const internsData = [
     task3: 3,
     task4: 8,
   }),
-  new InternData('Josiah', 'josiah.jpg', 'ProductDesign', {
+  new InternData('Josiah', 'josiah.PNG', 'ProductDesign', {
     task1: 10,
     task2: 10,
     task3: 8,
@@ -200,14 +200,14 @@ const internsData = [
     task3: 8,
     task4: 9,
   }),
-  new InternData('Harry', 'harry.jpg', 'DevOps', {
+  new InternData('Harry', 'harry.png', 'DevOps', {
     task1: 10,
     task2: 10,
     task3: 10,
     task4: 9,
   }),
 
-  new InternData('Nnacheta', 'nnacheta.jpg', 'DevOps', {
+  new InternData('Nnacheta', 'nnacheta.png', 'DevOps', {
     task1: 10,
     task2: 10,
     task3: 10,
@@ -237,7 +237,7 @@ const internsData = [
     task3: 4,
     task4: 10,
   }),
-  new InternData('Eric', 'eric.jpg', 'DevOps', {
+  new InternData('Eric', 'eric.png', 'DevOps', {
     task1: 10,
     task2: 8,
     task3: 10,

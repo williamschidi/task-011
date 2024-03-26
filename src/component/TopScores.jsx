@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { MyContext } from './AppContext';
 
 const Container = styled.div`
-  background-image: url('img/bg-10.PNG');
+  background-image: url('img/cover.PNG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -127,7 +127,7 @@ function TopScores() {
     <Container>
       <Tag type="second">
         <Span type="second">2nd</Span>
-        <Img src="../img/princess.png" alt="img1" type="second" />
+        <Img src={`../img/${topInterns[1].image}`} alt="img1" type="second" />
         <SpanContainer>
           <SpanTag>{topInterns[1].name}</SpanTag>
           <SpanTag>{topInterns[1].percentageScore}%</SpanTag>
@@ -135,7 +135,7 @@ function TopScores() {
       </Tag>
       <Tag type="first">
         <Span type="first">1st</Span>
-        <Img src="../img/princess01.png" alt="img2" type="first" />
+        <Img src={`../img/${topInterns[0].image}`} alt="img2" type="first" />
         <SpanContainer>
           <SpanTag>{topInterns[0].name}</SpanTag>
           <SpanTag>{topInterns[0].percentageScore}%</SpanTag>
@@ -143,7 +143,7 @@ function TopScores() {
       </Tag>
       <Tag type="third">
         <Span type="third">3rd</Span>
-        <Img src="../img/princess2.png" alt="img3" type="third" />
+        <Img src={`../img/${topInterns[2].image}`} alt="img3" type="third" />
         <SpanContainer>
           <SpanTag>{topInterns[2].name}</SpanTag>
           <SpanTag>{topInterns[2].percentageScore}%</SpanTag>
