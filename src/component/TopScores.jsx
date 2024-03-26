@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { MyContext } from './AppContext';
 
 const Container = styled.div`
-  background-image: url('img/cover.PNG');
+  background-image: url('img/newCover.PNG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
