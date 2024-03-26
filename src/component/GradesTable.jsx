@@ -1,5 +1,6 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
-import data from './data.js';
+import { MyContext } from './AppContext';
 
 const Container = styled.div`
   grid-column: 2/-1;
@@ -9,12 +10,10 @@ const Container = styled.div`
   align-items: flex-start;
   font-size: 2rem;
   font-weight: 800;
-  /* padding-top: 2rem; */
 `;
 
 const Table = styled.table`
   border-collapse: collapse;
-  margin: auto;
   width: 100%;
 `;
 
@@ -33,7 +32,7 @@ const TableBody = styled.td`
 `;
 
 function GradesTable() {
-  const { frontEndData } = data;
+  const { sortedInternGrades, searchedIntern } = useContext(MyContext);
 
   return (
     <Container>
@@ -42,7 +41,6 @@ function GradesTable() {
           <tr>
             <TableHead>s/n</TableHead>
             <TableHead>Name</TableHead>
-            <TableHead>Gender</TableHead>
             <TableHead>Task 1</TableHead>
             <TableHead>Task 2</TableHead>
             <TableHead>Task 3</TableHead>
@@ -52,26 +50,36 @@ function GradesTable() {
           </tr>
         </thead>
         <tbody>
-          {frontEndData.map((d, i) => {
-            let total = 0;
-            let expectedScore = 40;
-            Object.values(d.grade).forEach((value) => (total += value));
-            const percentageScore = (total / expectedScore) * 100;
+          {searchedIntern.length > 0
+            ? searchedIntern.map((data, ind) => {
+                return (
+                  <tr key={ind}>
+                    <TableBody>{ind + 1}</TableBody>
+                    <TableBody>{data.name}</TableBody>
+                    <TableBody>{data.grades.task1}</TableBody>
+                    <TableBody>{data.grades.task2}</TableBody>
+                    <TableBody>{data.grades.task3}</TableBody>
+                    <TableBody>{data.grades.task4}</TableBody>
+                    <TableBody>{data.totalGrades}</TableBody>
+                    <TableBody>{`${data.percentageScore}%`}</TableBody>
+                  </tr>
+                );
+              })
+            : sortedInternGrades.map((d, i) => {
+                return (
+                  <tr key={i}>
+                    <TableBody>{i + 1}</TableBody>
+                    <TableBody>{d.name}</TableBody>
 
-            return (
-              <tr key={i}>
-                <TableBody>{i + 1}</TableBody>
-                <TableBody>{d.name}</TableBody>
-                <TableBody>{d.gender}</TableBody>
-                <TableBody>{d.grade.task1}</TableBody>
-                <TableBody>{d.grade.task2}</TableBody>
-                <TableBody>{d.grade.task3}</TableBody>
-                <TableBody>{d.grade.task4}</TableBody>
-                <TableBody>{total}</TableBody>
-                <TableBody>{`${Math.floor(percentageScore)}%`}</TableBody>
-              </tr>
-            );
-          })}
+                    <TableBody>{d.grades.task1}</TableBody>
+                    <TableBody>{d.grades.task2}</TableBody>
+                    <TableBody>{d.grades.task3}</TableBody>
+                    <TableBody>{d.grades.task4}</TableBody>
+                    <TableBody>{d.totalGrades}</TableBody>
+                    <TableBody>{`${d.percentageScore}%`}</TableBody>
+                  </tr>
+                );
+              })}
         </tbody>
       </Table>
     </Container>

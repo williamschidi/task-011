@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { MyContext } from './AppContext';
 
 const Container = styled.div`
   grid-row: 1/-1;
@@ -61,6 +63,11 @@ const Img = styled.img`
   height: 3rem;
 `;
 function LearningPath() {
+  const { setLearningPath } = useContext(MyContext);
+
+  function handleClick(value) {
+    setLearningPath(value);
+  }
   return (
     <Container>
       <ContainerHead>
@@ -69,19 +76,19 @@ function LearningPath() {
       </ContainerHead>
 
       <Ul>
-        <Li>
+        <Li onClick={() => handleClick('product-design')}>
           <Img src="../img/product-design.PNG" alt="img-1" />
           Product Design
         </Li>
-        <Li>
+        <Li onClick={() => handleClick('front-end')}>
           <Img src="../img/front-end.PNG" alt="img-2" />
           Front-end
         </Li>
-        <Li>
+        <Li onClick={() => handleClick('back-end')}>
           <Img src="../img/back-end.PNG" alt="img-3" />
           Back-end
         </Li>
-        <Li>
+        <Li onClick={() => handleClick('devOps')}>
           <Img src="../img/Devops1.PNG" alt="img-4" />
           DevOps
         </Li>

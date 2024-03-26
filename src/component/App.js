@@ -4,9 +4,7 @@ import Header from './Header';
 import TopScores from './TopScores';
 import LearningPath from './LearningPath';
 import GlobalStyle from '../style/GlobalStyle';
-// import { useEffect, useRef, useState } from 'react';
-// import internData from './data.js';
-// import { useState } from 'react';
+import { ContextProvider } from './AppContext';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -16,69 +14,16 @@ const Container = styled.div`
 `;
 
 function App() {
-  // const [learningPath, setLearningPath] = useState('front-end');
-  // const [internName, setInternName] = useState('');
-  // const [internInfo, setInternInfo] = useState([]);
-  // const [topInterns, setTopInterns] = useState([]);
-
-  // useEffect(() => {
-  //   let filteredInternInfo = [];
-  //   if (learningPath === 'front-end')
-  //     filteredInternInfo = internData.filter(
-  //       (data) => data.info === 'FrontEnd'
-  //     );
-
-  //   if (learningPath === 'product-design')
-  //     filteredInternInfo = internData.filter(
-  //       (data) => data.info === 'ProductDesign'
-  //     );
-
-  //   if (learningPath === 'back-end')
-  //     filteredInternInfo = internData.filter((data) => data.info === 'BackEnd');
-
-  //   if (learningPath === 'devOps')
-  //     filteredInternInfo = internData.filter((data) => data.info === 'DevOps');
-
-  //   setInternInfo(filteredInternInfo);
-  // }, [learningPath]);
-
-  // useEffect(() => {
-  //   const internGrades = internInfo.map((data) => {
-  //     const name = data.name;
-  //     const grades = Object.values(data.grades).reduce(
-  //       (acc, arr) => acc + arr,
-  //       0
-  //     );
-
-  //     return { name, grades };
-  //   });
-  //   internGrades.sort((a, b) => b.grades - a.grades);
-  //   const bestIntern = internGrades.slice(0, 3);
-  //   setTopInterns(bestIntern);
-  // }, [internInfo]);
   return (
-    <>
+    <ContextProvider>
       <GlobalStyle />
       <Container>
         <LearningPath />
-        <Header
-        // learningPath={learningPath}
-        // setLearningPath={setLearningPath}
-        // internName={internName}
-        // setInternName={setInternName}
-        />
+        <Header />
         <TopScores />
         <GradesTable />
       </Container>
-    </>
-
-    // <div>
-
-    //   <Header />
-    //   <SearchIntern />
-    //   <TopScores />
-    //   <GradesTable />
-    // </div>
+    </ContextProvider>
   );
 }
 

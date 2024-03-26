@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { MyContext } from './AppContext';
 const Nav = styled.div`
   grid-column: 2/-1;
   display: flex;
@@ -68,8 +69,14 @@ const H1 = styled.h1`
 `;
 
 function Header() {
-  const [learningPath, setLearningPath] = useState('front-end');
-  const [internName, setInternName] = useState('');
+  const { learningPath, setLearningPath, internName, setInternName } =
+    useContext(MyContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setInternName(e.target.elements.internName.value);
+    e.target.elements.internName.value = '';
+  }
 
   return (
     <Nav>
@@ -80,17 +87,21 @@ function Header() {
       <Span>
         <Select
           value={learningPath}
-          onChange={(e) => setLearningPath(e.target.value)}
+          onChange={(e) => {
+            setLearningPath(e.target.value);
+            setInternName('');
+          }}
         >
           <option value="front-end">FrontEnd</option>
           <option value="product-design">Product Design</option>
           <option value="back-end">BackEnd</option>
           <option value="devOps">DevOps</option>
         </Select>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Input
             type="text"
-            placeholder="Intern name"
+            placeholder="Search Intern by Name"
+            name="internName"
             value={internName}
             onChange={(e) => setInternName(e.target.value)}
           />

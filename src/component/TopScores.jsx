@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import styled, { css } from 'styled-components';
+import { MyContext } from './AppContext';
 
 const Container = styled.div`
   background-image: url('img/bg-10.PNG');
@@ -115,30 +117,36 @@ const SpanTag = styled.div`
 `;
 
 function TopScores() {
+  const { topInterns } = useContext(MyContext);
+
+  if (topInterns.length < 3) {
+    return null;
+  }
+
   return (
     <Container>
       <Tag type="second">
         <Span type="second">2nd</Span>
         <Img src="../img/princess.png" alt="img1" type="second" />
         <SpanContainer>
-          <SpanTag>Mike Eze</SpanTag>
-          <SpanTag>84%</SpanTag>
+          <SpanTag>{topInterns[1].name}</SpanTag>
+          <SpanTag>{topInterns[1].percentageScore}%</SpanTag>
         </SpanContainer>
       </Tag>
       <Tag type="first">
         <Span type="first">1st</Span>
         <Img src="../img/princess01.png" alt="img2" type="first" />
         <SpanContainer>
-          <SpanTag>William Chidi</SpanTag>
-          <SpanTag>90%</SpanTag>
+          <SpanTag>{topInterns[0].name}</SpanTag>
+          <SpanTag>{topInterns[0].percentageScore}%</SpanTag>
         </SpanContainer>
       </Tag>
       <Tag type="third">
         <Span type="third">3rd</Span>
         <Img src="../img/princess2.png" alt="img3" type="third" />
         <SpanContainer>
-          <SpanTag>Fred Obi</SpanTag>
-          <SpanTag>80%</SpanTag>
+          <SpanTag>{topInterns[2].name}</SpanTag>
+          <SpanTag>{topInterns[2].percentageScore}%</SpanTag>
         </SpanContainer>
       </Tag>
     </Container>
